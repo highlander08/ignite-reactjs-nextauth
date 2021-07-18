@@ -1,7 +1,8 @@
 import Router from "next/router";
-import { parseCookies, setCookie } from "nookies";
+import { parseCookies } from "nookies";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { api } from "../services/api";
+import { setCookie } from "../utils/setCookie";
 
 type User = {
   email: string;
@@ -50,14 +51,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const { token, refreshToken, permissions, roles } = response.data;
 
-      setCookie(undefined, "nextauth.token", token, {
-        maxAge: 60 * 60 * 25 * 30, // 30 days
-        path: "/",
-      });
-      setCookie(undefined, "nextauth.refreshToken", refreshToken, {
-        maxAge: 60 * 60 * 25 * 30, // 30 days
-        path: "/",
-      });
+      setCookie("nextauth.token", token);
+
+      setCookie("nextauth.refreshToken", refreshToken);
 
       setUser({
         email,
