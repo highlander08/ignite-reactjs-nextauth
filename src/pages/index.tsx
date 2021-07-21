@@ -46,6 +46,8 @@ export default function Home() {
 }
 
 export const getServerSideProps = withSSRGuest(async (ctx) => {
+  console.log("index");
+
   return {
     props: {},
   };
