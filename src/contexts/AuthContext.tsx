@@ -40,7 +40,7 @@ export function signOut() {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User>({} as User);
+  const [user, setUser] = useState<User>();
   const isAuthenticated = !!user;
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           authChannel.close();
           break;
         case "signIn":
-          Router.push("/dashboard");
+          window.location.replace("http://localhost:3000/dashboard");
           break;
         default:
           break;

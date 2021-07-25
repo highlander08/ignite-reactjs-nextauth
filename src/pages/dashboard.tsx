@@ -1,19 +1,18 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Can } from "../components/Can";
 import { AuthContext } from "../contexts/AuthContext";
 import { setupApiClient } from "../services/api";
-import { api } from "../services/apiClient";
 import { withSSRAuth } from "../utils/withSSRAuth";
 
 export default function Dashboard() {
   const { user, signOut } = useContext(AuthContext);
 
-  useEffect(() => {
-    api
-      .get("/me")
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   api
+  //     .get("/me")
+  //     .then((response) => console.log(response))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <>
@@ -29,12 +28,10 @@ export default function Dashboard() {
 }
 
 export const getServerSideProps = withSSRAuth(async (ctx) => {
-  console.log("dashboard");
-
   const apiClient = setupApiClient(ctx);
-  const response = await apiClient.get("/me");
+  // const response = await apiClient.get("/me");
 
-  console.log(response);
+  // console.log(response);
 
   return {
     props: {},

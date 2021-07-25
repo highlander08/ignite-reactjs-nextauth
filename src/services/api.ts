@@ -29,14 +29,12 @@ export function setupApiClient(ctx = undefined) {
 
           if (!isRefreshing) {
             isRefreshing = true;
-            console.log("refresh");
+
             api
               .post("/refresh", {
                 refreshToken,
               })
               .then((response) => {
-                console.log("response");
-
                 const { token } = response.data;
 
                 setCookie("nextauth.token", token, ctx);
@@ -54,14 +52,10 @@ export function setupApiClient(ctx = undefined) {
                 failedRequestQueue = [];
               })
               .catch((err) => {
-                console.log("erro");
-
                 failedRequestQueue.forEach((request) => request.onFailure(err));
                 failedRequestQueue = [];
 
                 if (process.browser) {
-                  console.log("browser");
-
                   signOut();
                 }
               })
