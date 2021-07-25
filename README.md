@@ -22,6 +22,7 @@ Projeto desenvolvido estudando como criar um processo completo de autenticação
   - sessionStorage: é limpado ao fechar o navegador e abrir novamente;
   - localStorage: se mantém ao fechar ao fechar o navegador, reiniciar a máquina, etc; só existe no browser, o servidor não tem acesso, portando por exemplo se é usado Next.js já não da para utilizar;
   - cookies: pode ser acessado tanto no browser quanto no servidor;
+- BroadcastChannel: API utilizada para permitir a comunicação entre diferentes documentos (em diferentes janelas, abas, frames ou iframes) da mesma origem, no caso desta aplicação, para realizar o logout e login automático.
 
 ## ⚙ Clone e execução
 
