@@ -1,3 +1,4 @@
+// validar se os usuario tem permission, se tiver retorna true
 type User = {
   permissions: string[];
   roles: string[];

@@ -5,8 +5,12 @@ import { setupApiClient } from "../services/api";
 import { withSSRAuth } from "../utils/withSSRAuth";
 
 export default function Dashboard() {
+  // pegar dados do usuario e mostrar em tela
   const { user, signOut } = useContext(AuthContext);
 
+  // quando esse hook for executado nao enviara o token de autorização, se caso isso nao for adicionado
+      // api.defaults.headers["Authorization"] = `Bearer ${token}`;
+      // obs: sempre importante ter uma tratativa de erro em uma chamada api ter uma tratativa de erro
   // useEffect(() => {
   //   api
   //     .get("/me")
@@ -16,10 +20,12 @@ export default function Dashboard() {
 
   return (
     <>
+    {/* no primeiro momento eu nao tenho nada no 'user' por isso eu coloco que ele pode ser 'vazio' inicialmente com o ponto de interrogação(?) */}
       <h1>Dashboard: {user?.email}</h1>
 
       <button onClick={signOut}>Sign out</button>
 
+{/* conseguir ver apenas se ele tiver permissao de ver metrics.list */}
       <Can permissions={["metrics.list"]}>
         <div>Métricas</div>
       </Can>
@@ -28,6 +34,8 @@ export default function Dashboard() {
 }
 
 export const getServerSideProps = withSSRAuth(async (ctx) => {
+  // instanciar uma apiclient nosso http do axios ele vai ter um funcionamento diferente na parte de buscar os cookies, se eu tiver rodando no lado do cliente ou do lado do servidor
+  // refresh pode acontecer nesse momento
   const apiClient = setupApiClient(ctx);
   // const response = await apiClient.get("/me");
 

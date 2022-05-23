@@ -8,6 +8,7 @@ interface CanProps {
 }
 
 export function Can({ children, permissions, roles }: CanProps) {
+  // reaproveitamento do hook e deixar a variavel bem explicita pra poder entender o que ela faz
   const userCanSeeComponent = useCan({
     permissions,
     roles,
