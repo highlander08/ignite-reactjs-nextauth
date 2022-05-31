@@ -5,7 +5,7 @@ import { setupApiClient } from "../services/api";
 import { withSSRAuth } from "../utils/withSSRAuth";
 
 export default function Dashboard() {
-  // pegar dados do usuario e mostrar em tela
+  // pegar dados do Context
   const { user, signOut } = useContext(AuthContext);
 
   // quando esse hook for executado nao enviara o token de autorização, se caso isso nao for adicionado
@@ -20,12 +20,12 @@ export default function Dashboard() {
 
   return (
     <>
-    {/* no primeiro momento eu nao tenho nada no 'user' por isso eu coloco que ele pode ser 'vazio' inicialmente com o ponto de interrogação(?) */}
+    {/* no primeiro momento eu nao tenho nada no 'user' por isso eu coloco que ele pode ser 'vazio'(?)*/}
       <h1>Dashboard: {user?.email}</h1>
 
       <button onClick={signOut}>Sign out</button>
 
-{/* conseguir ver apenas se ele tiver permissao de ver metrics.list */}
+    {/*  ver apenas se ele tiver permissao  */}
       <Can permissions={["metrics.list"]}>
         <div>Métricas</div>
       </Can>

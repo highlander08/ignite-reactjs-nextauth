@@ -1,8 +1,6 @@
 import { setupApiClient } from "../services/api";
 import { withSSRAuth } from "../utils/withSSRAuth";
 // serve para decodificar um token e pegar o conteudo dele
-// import decode from 'jwt-decode'
-// usuario so vai ver pagina se ele tiver permission
 export default function Metrics() {
   return (
     <>
@@ -20,8 +18,9 @@ export const getServerSideProps = withSSRAuth(
       props: {},
     };
   },
-  // quais permissoes eu quero verificar que o usuario tem para poder acessar a tela e pode receber role tb
+
   {
+// usuario so vai ver pagina se ele tiver essas permission 
     permissions: ["metrics.list2"],
     roles: ["administrator"],
   }

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { parseCookies } from "nookies";
 import { FormEvent, useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import styles from "../styles/Home.module.css";
@@ -11,15 +10,16 @@ export default function Home() {
 // buscar dados do contexto
   const { signIn } = useContext(AuthContext);
 
-  
+  // metodo de submit
   async function handleSubmit(event: FormEvent) {
+    // evitar o comportamento padrao, evita de tentar enviar os dados para outra pagina
     event.preventDefault();
 
+  // pegar dados de email e senha
     const data = {
       email,
       password,
     };
-// função é uma promisse por isso usa async await 
     await signIn(data);
   }
 
@@ -46,7 +46,7 @@ export default function Home() {
     </div>
   );
 }
-// metodo que faz ser executado pelo lado do servidor, quando o usuario acessar essa pagina
+// metodo que é executado pelo lado do servidor, quando o usuario acessar essa pagina
 // obs:recebe como parametro uma outra função
 // como eu nem sempre sei o tipo de propriedade
 // ex: o retorno que eu quero ter dentro dessas props é algo do tipo como <{user: string[]}>
@@ -65,8 +65,8 @@ export const getServerSideProps = withSSRGuest<{user: string[]}>(async (ctx) => 
   // }
   return {
     props: {
+      // retorno definido na função withSSRGuest
       user: ['high', 'lucas']
-      
     },
   };
 });

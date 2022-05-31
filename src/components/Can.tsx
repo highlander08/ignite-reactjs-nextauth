@@ -8,15 +8,16 @@ interface CanProps {
 }
 
 export function Can({ children, permissions, roles }: CanProps) {
-  // reaproveitamento do hook e deixar a variavel bem explicita pra poder entender o que ela faz
+  // reaproveitar hook
+  // obs: deixar a variavelexplicita pra poder entender o que ela faz
   const userCanSeeComponent = useCan({
     permissions,
     roles,
   });
-
+// se nao existir retorna null
   if (!userCanSeeComponent) {
     return null;
   }
-
+//  retorna o elemento filho
   return <>{children}</>;
 }

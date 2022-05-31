@@ -5,4 +5,4 @@ export class AuthTokenError extends Error {
     super("Error with authentication token.");
   }
 }
-// por que quando eu crio uma class de erro eu consigo diferenciar um erro do outros :
+// quando eu crio uma class de erro eu consigo diferenciar um erro do outros

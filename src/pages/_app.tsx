@@ -4,7 +4,7 @@ import { AuthProvider } from "../contexts/AuthContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    // todas as peginas(componentes) da minha aplicação vao ter as informações do usuario logado
+    // todo dado que tiver dentro do provider o app vai ter acesso 
     <AuthProvider>
       <Component {...pageProps} />
     </AuthProvider>
